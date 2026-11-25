@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0b0e">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Ascension">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<title>Project: Athletic Ascension</title>
+<style>
+:root{color-scheme:dark;--bg:#0b0b0e;--panel:#15151b;--panel2:#202029;--line:#30303b;--txt:#f4f4f7;--muted:#a3a3af;--green:#9de0b7;--gold:#f0cb79;--red:#e89b9b;--blue:#a8c7f5}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--txt);font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+main{max-width:760px;margin:auto;padding:18px 15px 48px}.top{display:flex;justify-content:space-between;align-items:center;gap:10px}.eyebrow{font-size:10px;letter-spacing:2px;color:var(--muted);text-transform:uppercase}.title{font-size:25px;font-weight:850;margin:5px 0}.sub{color:var(--muted);font-size:12px}.season-pill{border:1px solid #48624f;color:var(--green);border-radius:99px;padding:7px 10px;font-size:11px;white-space:nowrap}
+.tabs{display:flex;gap:6px;overflow:auto;margin:17px 0 12px;padding-bottom:3px}.tab{background:var(--panel);border:1px solid var(--line);color:var(--muted);border-radius:11px;padding:10px 13px;white-space:nowrap;font-weight:650}.tab.active{background:#e8e8ef;color:#111;border-color:#e8e8ef}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:14px;margin-top:12px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}.stat{background:var(--panel2);border-radius:12px;padding:11px}.num{font-size:21px;font-weight:850}.label{font-size:10px;color:var(--muted);margin-top:3px}.sectionhead{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:16px 0 8px;font-weight:750}.days{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:10px}.day{border:1px solid var(--line);background:var(--panel2);color:var(--txt);border-radius:10px;padding:9px 1px;font-weight:750}.day.active{background:#e8e8ef;color:#111}.day small{display:block;font-size:9px;font-weight:500;margin-top:3px;opacity:.7}.bar{height:8px;background:#30303b;border-radius:99px;overflow:hidden;margin:8px 0}.fill{height:100%;background:var(--green);width:0%;transition:width .2s}.task{display:flex;gap:10px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line)}.task:last-child{border:0}.task input{appearance:none;width:21px;height:21px;flex:0 0 21px;border:1.5px solid #777785;border-radius:7px;margin:1px 0 0;position:relative}.task input:checked{background:var(--green);border-color:var(--green)}.task input:checked:after{content:"✓";position:absolute;color:#111;font-weight:900;left:4px;top:0}.task.done .taskname{text-decoration:line-through;color:var(--muted)}.taskbody{flex:1;min-width:0}.meta{display:flex;gap:5px;align-items:center;flex-wrap:wrap;font-size:10px;color:var(--muted);margin-bottom:4px}.tag{border:1px solid var(--line);border-radius:99px;padding:3px 7px}.tag.main{color:var(--green);border-color:#44614e}.tag.bonus{color:var(--gold);border-color:#6c5930}.taskname{font-weight:700}.detail{font-size:12px;color:var(--muted);line-height:1.45;margin-top:4px}.points{font-size:10px;color:var(--gold);white-space:nowrap}.muted,.note{color:var(--muted)}.note{font-size:11px;line-height:1.5}.actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}.action,button{cursor:pointer}.action{background:var(--panel2);border:1px solid var(--line);border-radius:10px;color:var(--txt);padding:9px 11px;font-size:11px}.action.primary{background:#e8e8ef;color:#111;border-color:#e8e8ef;font-weight:750}.daytitle{font-size:20px;font-weight:850;margin-top:15px}.focus{color:var(--muted);font-size:12px;margin-top:3px}.hidden{display:none!important}
+.levelrow{display:flex;align-items:center;gap:12px}.levelbadge{width:54px;height:54px;border-radius:15px;background:var(--panel2);display:grid;place-items:center;font-size:22px;font-weight:900;border:1px solid var(--line)}.levelinfo{flex:1}.xpbar{height:7px;background:#30303b;border-radius:99px;overflow:hidden;margin-top:7px}.xpfill{height:100%;background:var(--gold);width:0%}
+input[type=number],input[type=date],input[type=text],select{width:100%;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:11px;color:var(--txt);font:inherit;min-width:0}
+.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.field label{display:block;color:var(--muted);font-size:11px;margin:0 0 5px}.field.full{grid-column:1/-1}
+table{width:100%;border-collapse:collapse;font-size:12px}th,td{text-align:left;padding:9px 5px;border-bottom:1px solid var(--line)}th{color:var(--muted);font-weight:600}
+.chart{width:100%;height:180px;display:block;background:var(--panel2);border-radius:12px;margin-top:10px}.chart text{fill:var(--muted);font-size:10px}.chart .line{fill:none;stroke:var(--green);stroke-width:2.5}.chart .dot{fill:var(--green)}
+.notice{border-left:3px solid var(--gold);padding:8px 10px;background:#201e18;border-radius:0 9px 9px 0;color:#d8cba9;font-size:11px;line-height:1.5}
+.footer{text-align:center;color:var(--muted);font-size:10px;margin-top:22px}
+@media(min-width:600px){main{padding:25px}.stats{gap:10px}.panel{padding:17px}}
+</style>
+</head>
+<body>
+<main>
+ <header class="top"><div><div class="eyebrow">Sistema personal · Temporada activa</div><div class="title">ATHLETIC ASCENSION</div><div class="sub">Construye fuerza. Gana consistencia.</div></div><div class="season-pill" id="seasonPill">TEMPORADA 01</div></header>
+ <nav class="tabs">
+  <button class="tab active" data-tab="missions">Misiones</button>
+  <button class="tab" data-tab="progress">Progreso</button>
+  <button class="tab" data-tab="history">Historial</button>
+  <button class="tab" data-tab="settings">Sistema</button>
+ </nav>
+ <section id="view-missions">
+  <div class="panel">
+   <div class="levelrow"><div class="levelbadge" id="levelNum">1</div><div class="levelinfo"><div class="eyebrow">Nivel <span id="levelName">Iniciado</span></div><div style="font-size:16px;font-weight:800;margin-top:3px"><span id="xpTotal">0</span> XP acumulados</div><div class="xpbar"><div class="xpfill" id="xpFill"></div></div><div class="note" id="xpNext">0 / 100 XP para el siguiente nivel</div></div></div>
+   <div class="stats">
+    <div class="stat"><div class="num" id="weekPercent">0%</div><div class="label">Cumplimiento principal</div></div>
+    <div class="stat"><div class="num" id="weekPoints">0</div><div class="label">XP de bonificación</div></div>
+    <div class="stat"><div class="num" id="streak">0</div><div class="label">Racha de días perfectos</div></div>
+   </div>
+  </div>
+  <div class="panel">
+   <div class="sectionhead" style="margin-top:0"><span>Tu semana</span><span class="muted" id="weekLabel"></span></div>
+   <div class="days" id="days"></div>
+   <div class="daytitle" id="dayTitle"></div><div class="focus" id="focus"></div>
+   <div class="sectionhead"><span>Progreso del día</span><span id="dayPercent">0%</span></div>
+   <div class="bar"><div class="fill" id="dayFill"></div></div>
+   <div class="note" id="dayCount"></div>
+  </div>
+  <div class="panel">
+   <div class="sectionhead" style="margin-top:0"><span>Misiones principales</span><span class="tag main">10 XP c/u</span></div>
+   <div id="mainTasks"></div>
+   <div class="sectionhead"><span>Misiones opcionales</span><span class="tag bonus">+5 XP c/u</span></div>
+   <div class="note">No afectan tu porcentaje de cumplimiento. Los snacks y actividades extra solo suman XP.</div>
+   <div id="bonusTasks"></div>
+   <div class="actions"><button class="action" id="resetDay">Reiniciar día</button><button class="action" id="share">Compartir resumen</button></div>
+  </div>
+ </section>
+ <section id="view-progress" class="hidden">
+  <div class="panel">
+   <div class="sectionhead" style="margin-top:0">Registro corporal</div>
+   <p class="note">Registra medidas en condiciones similares, preferiblemente por la mañana. No necesitas medirte a diario.</p>
+   <div class="formgrid">
+    <div class="field"><label for="measureDate">Fecha</label><input id="measureDate" type="date"></div>
+    <div class="field"><label for="weight">Peso (kg)</label><input id="weight" type="number" min="1" max="300" step=".1" placeholder="60.0"></div>
+    <div class="field"><label for="waist">Cintura (cm)</label><input id="waist" type="number" min="1" max="250" step=".1" placeholder="—"></div>
+    <div class="field"><label for="chest">Pecho (cm)</label><input id="chest" type="number" min="1" max="250" step=".1" placeholder="—"></div>
+    <div class="field"><label for="arm">Brazo (cm)</label><input id="arm" type="number" min="1" max="100" step=".1" placeholder="—"></div>
+    <div class="field"><label for="thigh">Muslo (cm)</label><input id="thigh" type="number" min="1" max="150" step=".1" placeholder="—"></div>
+    <div class="field full"><label for="measureNotes">Notas (opcional)</label><input id="measureNotes" type="text" placeholder="Energía, cambios, observaciones…"></div>
+   </div>
+   <div class="actions"><button class="action primary" id="saveMeasure">Guardar registro</button></div>
+   <div id="measureMsg" class="note" style="margin-top:8px"></div>
+  </div>
+  <div class="panel">
+   <div class="sectionhead" style="margin-top:0"><span>Evolución del peso</span><span class="muted">kg</span></div>
+   <svg id="weightChart" class="chart" viewBox="0 0 600 180" preserveAspectRatio="none" role="img" aria-label="Gráfica de evolución del peso"></svg>
+   <div class="stats">
+    <div class="stat"><div class="num" id="latestWeight">—</div><div class="label">Último peso</div></div>
+    <div class="stat"><div class="num" id="weightChange">—</div><div class="label">Cambio registrado</div></div>
+    <div class="stat"><div class="num" id="recordsCount">0</div><div class="label">Registros</div></div>
+   </div>
+  </div>
+  <div class="panel"><div class="sectionhead" style="margin-top:0">Historial de medidas</div><div id="measureTable"></div></div>
+ </section>
+ <section id="view-history" class="hidden">
+  <div class="panel">
+   <div class="sectionhead" style="margin-top:0">Historial de temporadas</div>
+   <p class="note">Cada temporada conserva su fecha, XP ganado y cumplimiento. Al iniciar una nueva, el historial anterior queda archivado.</p>
+   <div id="seasonHistory"></div>
+   <div class="actions"><button class="action primary" id="newSeason">Iniciar nueva temporada</button></div>
+  </div>
+  <div class="panel"><div class="sectionhead" style="margin-top:0">Actividad reciente</div><div id="recentActivity"></div></div>
+ </section>
+ <section id="view-settings" class="hidden">
+  <div class="panel">
+   <div class="sectionhead" style="margin-top:0">Configuración de temporada</div>
+   <div class="formgrid">
+    <div class="field"><label for="seasonName">Nombre de temporada</label><input id="seasonName" type="text" maxlength="40"></div>
+    <div class="field"><label for="targetCalories">Calorías iniciales</label><input id="targetCalories" type="number" min="1000" max="6000"></div>
+    <div class="field"><label for="targetProtein">Proteína (g/día)</label><input id="targetProtein" type="number" min="40" max="300"></div>
+    <div class="field"><label for="targetWater">Agua (L/día)</label><input id="targetWater" type="number" min="0.5" max="8" step=".1"></div>
+   </div>
+   <div class="actions"><button class="action primary" id="saveSettings">Guardar configuración</button></div>
+  </div>
+  <div class="panel">
+   <div class="sectionhead" style="margin-top:0">Copia de seguridad</div>
+   <p class="note">Exporta todos tus datos a un archivo JSON. Guárdalo en Archivos o iCloud. Si cambias de navegador o dispositivo, podrás importarlo.</p>
+   <div class="actions"><button class="action primary" id="exportData">Exportar copia</button><label class="action" for="importFile">Importar copia</label><input id="importFile" class="hidden" type="file" accept="application/json"></div>
+  </div>
+  <div class="panel"><div class="notice">Las marcas, medidas y temporadas se almacenan localmente en este navegador. No se envían a un servidor. Exporta una copia periódicamente para evitar perder tus datos.</div></div>
+ </section>
+ <div class="footer">PROJECT: ATHLETIC ASCENSION · Tu progreso pertenece a tu constancia.</div>
+</main>
+<script>
+const STORAGE="athletic-ascension-v2";
+const todayISO=()=>new Date().toLocaleDateString("en-CA");
+const defaultData=()=>({season:{number:1,name:"Temporada 01",start:todayISO(),xp:0},archives:[],checks:{},measurements:[],settings:{calories:2400,protein:120,water:2.5}});
+let data=JSON.parse(localStorage.getItem(STORAGE)||"null")||defaultData();
+let selectedDate=todayISO();
+function persist(){localStorage.setItem(STORAGE,JSON.stringify(data))}
+function dateObj(s){return new Date(s+"T12:00:00")}
+function mondayOf(s){let d=dateObj(s),n=(d.getDay()+6)%7;d.setDate(d.getDate()-n);return d.toLocaleDateString("en-CA")}
+function addDays(s,n){let d=dateObj(s);d.setDate(d.getDate()+n);return d.toLocaleDateString("en-CA")}
+function dayLabel(s){return ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"][dateObj(s).getDay()]}
+const base=[
+ {id:"breakfast",time:"8:30 a. m.",name:"Desayuno de construcción",detail:"Huevos, avena, leche y fruta. Objetivo: 25–30 g de proteína."},
+ {id:"lunch",time:"2:30 p. m.",name:"Comida principal",detail:"Pollo, arroz, frijoles y verduras. Objetivo: 30–35 g de proteína."},
+ {id:"dinner",time:"8:30 p. m.",name:"Cena de recuperación",detail:"Atún, pollo, huevos o queso con tortillas. Objetivo: 25–30 g de proteína."},
+ {id:"water",time:"Durante el día",name:"Hidratación",detail:"Aproximadamente 2–2.5 L, ajustando por calor y sudoración."},
+ {id:"sleep",time:"Noche",name:"Recuperación nocturna",detail:"Reservar tiempo para dormir entre 7 y 9 horas."}
+];
+const snacks=[
+ {id:"snack1",time:"11:30 a. m.",name:"Snack saludable I",detail:"Yogur griego y fruta. Objetivo: 15–20 g de proteína."},
+ {id:"snack2",time:"5:30 p. m.",name:"Snack saludable II",detail:"Sándwich de atún, leche o fruta con crema de cacahuate."}
+];
+const plan=[
+ {dow:1,name:"Lunes",focus:"Pecho, hombros y tríceps",training:"Calienta 5–8 min. Flexiones 3×8–15; flexiones declinadas 3×8–12; pike push-ups 3×6–10; elevaciones laterales con banda 3×12–20; extensiones de tríceps 3×10–15.",bonus:[["walk","Paseo de desconexión","15–20 min caminando sin celular ni audífonos."],["mob","Movilidad de hombros","5 min de movilidad suave de hombros y pecho."]]},
+ {dow:2,name:"Martes",focus:"Espalda y bíceps",training:"Dominadas 3×5–10 o jalón con banda 3×10–15; remo con mochila 3×10–15; remo unilateral 3×10–15; curl de bíceps 3×10–15; curl martillo 2×10–15.",bonus:[["forest","Baño de bosque","15–20 min al aire libre, preferiblemente entre árboles, sin dispositivos."],["posture","Postura y movilidad","5 min de movilidad torácica y control postural."]]},
+ {dow:3,name:"Miércoles",focus:"Recuperación activa",training:"Sin pesas ni entrenamiento intenso. Caminata tranquila de 20–30 min; movilidad suave opcional.",bonus:[["stretch","Movilidad corporal","10 min de movilidad de cadera, espalda y hombros."],["mind","Despejar la mente","15 min de lectura, escritura o reflexión sin pantallas."]]},
+ {dow:4,name:"Jueves",focus:"Piernas y abdomen",training:"Sentadilla con mochila 3×10–15; búlgara 3×8–12 por pierna; peso muerto rumano 3×10–15; pantorrillas 3×15–25; elevaciones de piernas 3×10–15; plancha 3×30–60 s.",bonus:[["walk","Paseo regenerativo","10–15 min de caminata ligera."],["stretch","Flexibilidad inferior","5–8 min de movilidad suave de piernas y cadera."]]},
+ {dow:5,name:"Viernes",focus:"Torso y brazos",training:"Flexiones con mochila 3×8–12; remo con mochila 3×10–15; pike push-ups 2×8–12; elevaciones laterales 3×15–20; curl de bíceps 3×10–15; extensión de tríceps 3×10–15.",bonus:[["walk","Desconexión mental","15 min de caminata sin dispositivos."],["review","Evaluación de fuerza","Registra repeticiones y peso utilizado, sin hacer pruebas máximas."]]},
+ {dow:6,name:"Sábado",focus:"Recuperación, movimiento y exploración",training:"Sin entrenamiento intenso. Elige 20–30 min de paseo, bicicleta suave o actividad recreativa.",bonus:[["nature","Explorador de la naturaleza","30 min en un parque o espacio verde, sin teléfono ni música."],["mealprep","Preparación alimenticia","Deja listos algunos alimentos para facilitar la próxima semana."],["hobby","Tiempo personal","30 min para un pasatiempo sin obligaciones productivas."]]},
+ {dow:0,name:"Domingo",focus:"Descanso y planificación",training:"Descanso muscular. Sin rutina de fuerza. Recuperación completa.",bonus:[["walk","Caminata contemplativa","20 min de paseo tranquilo sin dispositivos."],["measure","Auditoría física","Revisa promedio de peso, energía, alimentación y cumplimiento."],["prepare","Preparar la siguiente semana","Organiza comidas, ropa deportiva y horarios."]]}
+];
+function dayPlan(s){return plan.find(p=>p.dow===dateObj(s).getDay())}
+function mainTasks(s){let p=dayPlan(s);return [...base,{id:"training",time:"Sesión flexible",name:(p.dow===0||p.dow===3||p.dow===6)?"Recuperación / descanso":"Entrenamiento del día",detail:p.training}]}
+function bonusTasks(s){let p=dayPlan(s);return [...snacks.map(x=>({...x,detail:x.detail+" (opcional)."})),...p.bonus.map(x=>({id:x[0],time:"Cuando puedas",name:x[1],detail:x[2]}))]}
+function check(s,id){return !!data.checks[s+"|"+id]}
+function setCheck(s,id,v,isBonus){let pts=isBonus?5:10;data.checks[s+"|"+id]=v;if(v){data.season.xp+=pts}else{data.season.xp=Math.max(0,data.season.xp-pts)}persist();render()}
+function allDates(){let out=[];let start=data.season.start,end=todayISO();if(start>end)return [end];let cursor=start;while(cursor<=end&&out.length<500){out.push(cursor);cursor=addDays(cursor,1)}return out}
+function dailyPercent(s){let t=mainTasks(s);return Math.round(t.filter(x=>check(s,x.id)).length/t.length*100)}
+function totalXP(){return data.season.xp}
+function levelInfo(xp){let level=Math.floor(xp/100)+1,into=xp%100;let names=["Iniciado","Constante","Disciplinado","Atleta","Élite","Élite Ascendente"];return {level,into,name:names[Math.min(level-1,names.length-1)]}}
+function streakCount(){let d=todayISO(),count=0;while(d>=data.season.start&&dailyPercent(d)===100){count++;d=addDays(d,-1)}return count}
+function calcStats(){let dates=allDates(),total=0,done=0,bonus=0;dates.forEach(s=>{let m=mainTasks(s);total+=m.length;done+=m.filter(t=>check(s,t.id)).length;bonus+=bonusTasks(s).filter(t=>check(s,t.id)).length*5});return {total,done,bonus,pct:total?Math.round(done/total*100):0}}
+function taskHTML(s,t,isBonus){let done=check(s,t.id);return `<label class="task ${done?'done':''}"><input type="checkbox" data-date="${s}" data-id="${t.id}" data-bonus="${isBonus?1:0}" ${done?'checked':''}><span class="taskbody"><span class="meta">${t.time} <span class="tag ${isBonus?'bonus':'main'}">${isBonus?'Opcional':'Principal'}</span></span><span class="taskname">${t.name}</span><div class="detail">${t.detail}</div></span><span class="points">${isBonus?'+5':'10'} XP</span></label>`}
+function renderMissions(){
+ let s=selectedDate,p=dayPlan(s),m=mainTasks(s),b=bonusTasks(s),done=m.filter(t=>check(s,t.id)).length,pct=Math.round(done/m.length*100),stats=calcStats(),level=levelInfo(totalXP());
+ document.getElementById("seasonPill").textContent="TEMPORADA "+String(data.season.number).padStart(2,"0");
+ document.getElementById("levelNum").textContent=level.level;document.getElementById("levelName").textContent=level.name;document.getElementById("xpTotal").textContent=totalXP();document.getElementById("xpFill").style.width=level.into+"%";document.getElementById("xpNext").textContent=`${level.into}/100 XP para el siguiente nivel`;
+ document.getElementById("weekPercent").textContent=stats.pct+"%";document.getElementById("weekPoints").textContent=stats.bonus;document.getElementById("streak").textContent=streakCount();
+ let week=mondayOf(s);document.getElementById("weekLabel").textContent="Semana del "+dateObj(week).toLocaleDateString("es-MX",{day:"numeric",month:"short"});
+ document.getElementById("days").innerHTML=Array.from({length:7},(_,i)=>addDays(week,i)).map(x=>{let pp=dailyPercent(x),is=x===s;return `<button class="day ${is?'active':''}" data-date-select="${x}">${["D","L","M","X","J","V","S"][dateObj(x).getDay()]}<small>${dateObj(x).getDate()} · ${pp}%</small></button>`}).join("");
+ document.getElementById("dayTitle").textContent=p.name+" · "+dateObj(s).toLocaleDateString("es-MX",{day:"numeric",month:"long"});
+ document.getElementById("focus").textContent=p.focus;document.getElementById("dayPercent").textContent=pct+"%";document.getElementById("dayFill").style.width=pct+"%";document.getElementById("dayCount").textContent=`${done}/${m.length} misiones principales. Las secundarias no reducen el porcentaje.`;
+ document.getElementById("mainTasks").innerHTML=m.map(t=>taskHTML(s,t,false)).join("");document.getElementById("bonusTasks").innerHTML=b.map(t=>taskHTML(s,t,true)).join("");
+ document.querySelectorAll("[data-date-select]").forEach(el=>el.onclick=()=>{selectedDate=el.dataset.dateSelect;render()});
+ document.querySelectorAll('input[type="checkbox"][data-date]').forEach(el=>el.onchange=()=>{setCheck(el.dataset.date,el.dataset.id,el.checked,el.dataset.bonus==="1")});
+}
+function renderProgress(){
+ let arr=[...data.measurements].sort((a,b)=>a.date.localeCompare(b.date)),last=arr[arr.length-1],first=arr.find(x=>x.weight!==null&&x.weight!==undefined&&x.weight!=="") ,latest=[...arr].reverse().find(x=>x.weight!==null&&x.weight!==undefined&&x.weight!=="");
+ document.getElementById("latestWeight").textContent=latest?latest.weight+" kg":"—";
+ document.getElementById("weightChange").textContent=first&&latest?((Number(latest.weight)-Number(first.weight)>0?"+":"")+ (Number(latest.weight)-Number(first.weight)).toFixed(1)+" kg"):"—";
+ document.getElementById("recordsCount").textContent=arr.length;
+ const points=arr.filter(x=>x.weight!==null&&x.weight!==undefined&&x.weight!=="");
+ let svg=document.getElementById("weightChart");
+ if(points.length<2){svg.innerHTML='<text x="300" y="88" text-anchor="middle">Registra al menos dos pesos para ver la evolución</text>'}
+ else{let vals=points.map(x=>Number(x.weight)),min=Math.min(...vals)-.5,max=Math.max(...vals)+.5,coords=vals.map((v,i)=>[35+i*(530/(vals.length-1)),145-(v-min)/(max-min)*110]);svg.innerHTML=`<polyline class="line" points="${coords.map(c=>c.join(",")).join(" ")}"/>`+coords.map((c,i)=>`<circle class="dot" cx="${c[0]}" cy="${c[1]}" r="4"/><text x="${c[0]}" y="164" text-anchor="middle">${points[i].date.slice(5)}</text><text x="${c[0]}" y="${c[1]-9}" text-anchor="middle">${vals[i].toFixed(1)}</text>`).join("")}
+ document.getElementById("measureTable").innerHTML=arr.length?`<table><thead><tr><th>Fecha</th><th>Peso</th><th>Cintura</th><th>Pecho</th><th>Brazo</th><th>Muslo</th></tr></thead><tbody>${arr.slice().reverse().map(x=>`<tr><td>${x.date}</td><td>${x.weight||"—"}</td><td>${x.waist||"—"}</td><td>${x.chest||"—"}</td><td>${x.arm||"—"}</td><td>${x.thigh||"—"}</td></tr>`).join("")}</tbody></table>`:'<p class="note">Aún no hay medidas registradas.</p>';
+}
+function renderHistory(){
+ let archived=data.archives||[];
+ document.getElementById("seasonHistory").innerHTML=`<div class="panel" style="margin:0 0 8px;background:var(--panel2)"><b>${data.season.name}</b><div class="note">Activa · Desde ${data.season.start} · ${data.season.xp} XP</div></div>`+(archived.length?archived.slice().reverse().map(x=>`<div class="panel" style="margin:8px 0;background:var(--panel2)"><b>${x.name}</b><div class="note">${x.start} a ${x.end} · ${x.xp} XP · ${x.percent}% cumplimiento</div></div>`).join(""):'<p class="note">Todavía no hay temporadas archivadas. Al cerrar tu primera temporada, aparecerá aquí.</p>');
+ let dates=allDates().reverse().filter(s=>mainTasks(s).some(t=>check(s,t.id))).slice(0,12);
+ document.getElementById("recentActivity").innerHTML=dates.length?dates.map(s=>`<div class="task"><div class="taskbody"><b>${dateObj(s).toLocaleDateString("es-MX",{weekday:"long",day:"numeric",month:"short"})}</b><div class="detail">${dailyPercent(s)}% de misiones principales · ${bonusTasks(s).filter(t=>check(s,t.id)).length*5} XP extra</div></div></div>`).join(""):'<p class="note">Completa misiones para generar tu historial.</p>';
+}
+function renderSettings(){document.getElementById("seasonName").value=data.season.name;document.getElementById("targetCalories").value=data.settings.calories;document.getElementById("targetProtein").value=data.settings.protein;document.getElementById("targetWater").value=data.settings.water}
+function render(){renderMissions();renderProgress();renderHistory();renderSettings()}
+document.querySelectorAll("[data-tab]").forEach(btn=>btn.onclick=()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===btn));["missions","progress","history","settings"].forEach(x=>document.getElementById("view-"+x).classList.toggle("hidden",x!==btn.dataset.tab))});
+document.getElementById("resetDay").onclick=()=>{if(confirm("¿Reiniciar las misiones de esta fecha?")){[...mainTasks(selectedDate),...bonusTasks(selectedDate)].forEach(t=>delete data.checks[selectedDate+"|"+t.id]);persist();render()}};
+document.getElementById("share").onclick=()=>{let m=mainTasks(selectedDate),done=m.filter(t=>check(selectedDate,t.id)).length,b=bonusTasks(selectedDate).filter(t=>check(selectedDate,t.id)).length*5,msg=`PROJECT: ATHLETIC ASCENSION\n${dayPlan(selectedDate).name}: ${Math.round(done/m.length*100)}% principal\n${done}/${m.length} misiones principales\n${b} XP extra`;if(navigator.share)navigator.share({text:msg});else navigator.clipboard?.writeText(msg).then(()=>alert("Resumen copiado."))};
+document.getElementById("measureDate").value=todayISO();
+document.getElementById("saveMeasure").onclick=()=>{let obj={date:document.getElementById("measureDate").value,weight:document.getElementById("weight").value||null,waist:document.getElementById("waist").value||null,chest:document.getElementById("chest").value||null,arm:document.getElementById("arm").value||null,thigh:document.getElementById("thigh").value||null,notes:document.getElementById("measureNotes").value};if(!obj.date||![obj.weight,obj.waist,obj.chest,obj.arm,obj.thigh].some(Boolean)){document.getElementById("measureMsg").textContent="Indica una fecha y al menos una medida.";return}data.measurements=data.measurements.filter(x=>x.date!==obj.date);data.measurements.push(obj);persist();document.getElementById("measureMsg").textContent="Registro guardado.";renderProgress()};
+document.getElementById("saveSettings").onclick=()=>{data.season.name=document.getElementById("seasonName").value||data.season.name;data.settings={calories:Number(document.getElementById("targetCalories").value)||2400,protein:Number(document.getElementById("targetProtein").value)||120,water:Number(document.getElementById("targetWater").value)||2.5};persist();render();alert("Configuración guardada.")};
+document.getElementById("newSeason").onclick=()=>{if(!confirm("¿Archivar la temporada actual e iniciar una nueva? Las medidas y el historial se conservarán."))return;let stats=calcStats();data.archives.push({number:data.season.number,name:data.season.name,start:data.season.start,end:todayISO(),xp:data.season.xp,percent:stats.pct});data.season={number:data.season.number+1,name:"Temporada "+String(data.season.number+1).padStart(2,"0"),start:todayISO(),xp:0};data.checks={};persist();selectedDate=todayISO();render();alert("Nueva temporada iniciada.")};
+document.getElementById("exportData").onclick=()=>{let blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="athletic-ascension-backup-"+todayISO()+".json";a.click();URL.revokeObjectURL(url)};
+document.getElementById("importFile").onchange=e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!x.season||!x.checks||!x.settings)throw Error();if(confirm("Esto reemplazará los datos actuales. ¿Continuar?")){data=x;persist();render();alert("Copia restaurada.")}}catch(err){alert("El archivo no parece una copia válida de Athletic Ascension.")}};r.readAsText(f)};
+render();
+if("serviceWorker" in navigator&&location.protocol.startsWith("http"))navigator.serviceWorker.register("./sw.js").catch(()=>{});
+</script>
+</body></html>

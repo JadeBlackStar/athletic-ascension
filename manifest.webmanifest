@@ -1,0 +1,17 @@
+{
+  "name": "Project: Athletic Ascension",
+  "short_name": "Ascension",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0b0b0e",
+  "theme_color": "#0b0b0e",
+  "description": "Misiones, niveles, XP, medidas e historial de transformación física.",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

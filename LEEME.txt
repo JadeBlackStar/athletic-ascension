@@ -1,0 +1,35 @@
+# PROJECT: ATHLETIC ASCENSION — versión 2.0
+
+## Qué incorpora
+- Misiones principales (10 XP) y secundarias opcionales (+5 XP).
+- Snacks saludables opcionales: nunca reducen el porcentaje principal.
+- Niveles por experiencia, racha de días con 100% de misiones principales y XP total.
+- Selección de fechas reales y progreso semanal.
+- Registro de peso, cintura, pecho, brazo y muslo.
+- Gráfica sencilla de evolución del peso e historial de medidas.
+- Historial de temporadas archivadas.
+- Exportación e importación de copia de seguridad JSON.
+- Aplicación web progresiva instalable en iPhone y modo sin conexión tras la primera carga.
+
+## Publicar gratis con GitHub Pages
+1. Descomprime el ZIP.
+2. Crea un repositorio en GitHub llamado `athletic-ascension`.
+3. Sube a la raíz del repositorio los archivos `index.html`, `manifest.webmanifest`, `sw.js` e `icon.svg`.
+4. En GitHub abre Settings → Pages.
+5. Selecciona Deploy from a branch, rama `main`, carpeta `/ (root)` y guarda.
+6. Cuando termine la publicación, abre la URL de GitHub Pages en Safari del iPhone.
+7. Pulsa Compartir → Añadir a pantalla de inicio.
+
+## Uso y conservación de datos
+- El progreso se almacena localmente en el navegador/dispositivo.
+- No hay cuenta ni sincronización automática entre dispositivos.
+- En Sistema → Copia de seguridad, exporta un JSON periódicamente.
+- Para restaurar, usa Importar copia.
+- Si publicas una actualización, el service worker renueva la caché al cargar la nueva versión.
+
+## Puntuación
+- Cada misión principal completada suma 10 XP.
+- Cada misión opcional completada suma 5 XP.
+- Cada 100 XP se alcanza un nivel nuevo.
+- El porcentaje se calcula solo con misiones principales.
+- Una racha cuenta días consecutivos con el 100% de misiones principales, hasta la fecha actual.
