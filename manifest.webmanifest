@@ -5,7 +5,7 @@
   "display": "standalone",
   "background_color": "#0b0b0e",
   "theme_color": "#0b0b0e",
-  "description": "Misiones, niveles, XP, medidas e historial de transformación física.",
+  "description": "Misiones por ejercicio y series, niveles, XP, medidas e historial.",
   "icons": [
     {
       "src": "icon.svg",
